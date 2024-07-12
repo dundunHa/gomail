@@ -27,6 +27,7 @@ func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
 	// 		return "", nil, errors.New("gomail: unencrypted connection")
 	// 	}
 	// }
+	
 	if server.Name != a.host {
 		return "", nil, errors.New("gomail: wrong host name")
 	}
