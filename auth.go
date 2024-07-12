@@ -15,18 +15,18 @@ type loginAuth struct {
 }
 
 func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
-	if !server.TLS {
-		advertised := false
-		for _, mechanism := range server.Auth {
-			if mechanism == "LOGIN" {
-				advertised = true
-				break
-			}
-		}
-		if !advertised {
-			return "", nil, errors.New("gomail: unencrypted connection")
-		}
-	}
+	// if !server.TLS {
+	// 	advertised := false
+	// 	for _, mechanism := range server.Auth {
+	// 		if mechanism == "LOGIN" {
+	// 			advertised = true
+	// 			break
+	// 		}
+	// 	}
+	// 	if !advertised {
+	// 		return "", nil, errors.New("gomail: unencrypted connection")
+	// 	}
+	// }
 	if server.Name != a.host {
 		return "", nil, errors.New("gomail: wrong host name")
 	}
