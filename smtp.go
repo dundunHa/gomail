@@ -93,20 +93,16 @@ func (d *Dialer) Dial() (SendCloser, error) {
 				d.Auth = smtp.CRAMMD5Auth(d.Username, d.Password)
 			} else if strings.Contains(auths, "LOGIN") &&
 				!strings.Contains(auths, "PLAIN") {
-					fmt.Println("loginAuth auth ")
+				fmt.Println("loginAuth auth ")
 				d.Auth = &loginAuth{
 					username: d.Username,
 					password: d.Password,
 					host:     d.Host,
 				}
 			} else {
-					fmt.Println("PlainAuth auth ")
-				// d.Auth = smtp.PlainAuth("", d.Username, d.Password, d.Host)
-				d.Auth = &loginAuth{
-					username: d.Username,
-					password: d.Password,
-					host:     d.Host,
-				}
+				fmt.Println("PlainAuth auth ")
+				d.Auth = &plainAuth{"", d.Username, d.Password, d.Host}
+
 			}
 		}
 	}
